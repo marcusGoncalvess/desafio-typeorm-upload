@@ -23,6 +23,10 @@ export default class CreateTransactions1599968308093
             type: 'integer',
           },
           {
+            name: 'type',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
