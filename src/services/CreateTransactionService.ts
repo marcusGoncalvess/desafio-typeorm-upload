@@ -22,6 +22,12 @@ class CreateTransactionService {
     const transactionsRepository = getCustomRepository(TransactionRepository);
     const categoryRepository = getRepository(Category);
 
+    const { total } = await transactionsRepository.getBalance();
+
+    if (type === 'outcome' && total < value) {
+      throw new AppError('You do not have enough balance');
+    }
+
     const categoryAlreadyExists = await categoryRepository.findOne({
       where: { title: category },
     });

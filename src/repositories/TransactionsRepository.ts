@@ -18,8 +18,27 @@ class TransactionsRepository extends Repository<Transaction> {
     return findRelation;
   }
 
-  public async getBalance(): Promise<void> {
-    // TODO
+  public async getBalance(): Promise<Balance> {
+    const allTransactions = await this.all();
+
+    const balance = allTransactions.reduce(
+      (accumulator: Balance, transaction: Transaction) => {
+        if (transaction.type === 'income') {
+          accumulator.income += transaction.value;
+        } else {
+          accumulator.outcome += transaction.value;
+        }
+        accumulator.total = accumulator.income - accumulator.outcome;
+        return accumulator;
+      },
+      {
+        income: 0,
+        outcome: 0,
+        total: 0,
+      },
+    );
+
+    return balance;
   }
 }
 
