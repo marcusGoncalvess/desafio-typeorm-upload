@@ -10,7 +10,7 @@ interface Balance {
 
 @EntityRepository(Transaction)
 class TransactionsRepository extends Repository<Transaction> {
-  public async all(): Promise<any> {
+  public async all(): Promise<Transaction[]> {
     const findRelation = await this.find({
       relations: ['category'],
     });
