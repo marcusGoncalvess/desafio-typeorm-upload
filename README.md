@@ -1,8 +1,8 @@
 <img alt="GoStack" src="https://storage.googleapis.com/golden-wind/bootcamp-gostack/header-desafios-new.png" />
 
-<h1 align="center">
+<h2 align="center">
   Desafio 06: Banco de dados e upload de arquivos no Node.js
-</h1>
+</h2>
 
 <blockquote align="center">“Só deseje as coisas as quais você está disposto a lutar”!</blockquote>
 
