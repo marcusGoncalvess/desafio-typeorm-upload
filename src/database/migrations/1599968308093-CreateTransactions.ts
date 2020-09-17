@@ -20,7 +20,10 @@ export default class CreateTransactions1599968308093
           },
           {
             name: 'value',
-            type: 'integer',
+            type: 'decimal',
+            // precision e scale deixam o valor como 00,00
+            precision: 10,
+            scale: 2,
           },
           {
             name: 'type',

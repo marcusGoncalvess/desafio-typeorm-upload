@@ -28,27 +28,23 @@ class CreateTransactionService {
       throw new AppError('You do not have enough balance');
     }
 
-    const categoryAlreadyExists = await categoryRepository.findOne({
+    let transactionCategory = await categoryRepository.findOne({
       where: { title: category },
     });
 
-    let category_id;
-
-    if (!categoryAlreadyExists) {
-      const newCategory = categoryRepository.create({
+    if (!transactionCategory) {
+      transactionCategory = categoryRepository.create({
         title: category,
       });
-      await categoryRepository.save(newCategory);
-      category_id = newCategory.id;
-    } else {
-      category_id = categoryAlreadyExists.id;
+
+      await categoryRepository.save(transactionCategory);
     }
 
     const transaction = await transactionsRepository.create({
       title,
       value,
       type,
-      category_id,
+      category: transactionCategory,
     });
 
     await transactionsRepository.save(transaction);
